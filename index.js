@@ -86,13 +86,19 @@ const generateREADME =({title, description, installation, usage, contribution, t
     
     ${email} `;
 
-inquirer.prompt(questions);
+    
+    // TODO: Create a function to write README file
+    inquirer.prompt(questions)
+        .then((answers) => {
+            const readMeContent = generateREADME(answers);
+    
+            fs.writeFile('README.md', readMeContent, (err) =>
+                err ? console.log(err) : console.log('Created README.md')
+            );
+        });
+    
+// // TODO: Create a function to initialize app
+// function init() {}
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+// // Function call to initialize app
+// init();
