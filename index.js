@@ -46,57 +46,56 @@ const questions = [
 
 ];
 
+// TODO: Create a function to write README file
 const generateREADME =({title, description, installation, usage, contribution, testing, gitHub, email}) =>
-    `## ${title}
+`## ${title}
 
-    ## Description
-    
-    ${description}
-    
-    ### Table of Contents
-    
-    1. [Installation](#installation)
-    2. [Usage](#usage)
-    3. [License](#)
-    4. [Contributing](#contribution)
-    5. [Tests](#testing)
-    6. [Questions](#gitHub)
-    
-    ## Installation
-    
-    ${installation}
-    
-    ## Usage
-    
-    ${usage}
-    
-    ## Contributing
-    
-    ${contribution}
-    
-    ## Tests
-    
-    ${testing}
-    
-    ## Questions
-    
-    Have any questions?
-    
-    ${gitHub}
-    
-    ${email} `;
+## Description
 
+${description}
+
+### Table of Contents
+
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [License](#)
+4. [Contributing](#contributing)
+5. [Tests](#tests)
+6. [Questions](#questions)
+
+## Installation
+
+${installation}
+
+## Usage
+
+${usage}
+
+## Contributing
     
-    // TODO: Create a function to write README file
-    inquirer.prompt(questions)
-        .then((answers) => {
-            const readMeContent = generateREADME(answers);
+${contribution}
+
+## Tests
+
+${testing}
+
+## Questions
+
+Have any questions?
+
+Reach out on GitHub: ${gitHub}
+
+Email me: ${email} `;
+
+inquirer.prompt(questions)
+.then((answers) => {
+    const readMeContent = generateREADME(answers);
     
-            fs.writeFile('README.md', readMeContent, (err) =>
-                err ? console.log(err) : console.log('Created README.md')
-            );
-        });
-    
+    fs.writeFile('README.md', readMeContent, (err) =>
+    err ? console.log(err) : console.log('Created README.md')
+    );
+});
+
 // // TODO: Create a function to initialize app
 // function init() {}
 
