@@ -111,7 +111,7 @@ inquirer.prompt(questions)
     const readMeContent = generateREADME(answers);
     
     fs.writeFile('README.md', readMeContent, (err) =>
-    err ? console.log(err) : console.log('Created README.md')
+    err ? console.log(err) : console.log('Created README.md file!!')
     );
 });
 
