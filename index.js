@@ -1,7 +1,8 @@
-// TODO: Include packages needed for this application
+// Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-// TODO: Create an array of questions for user input
+
+// Create an array of questions for user input
 const questions = [
     {
         type: 'input',
@@ -12,6 +13,12 @@ const questions = [
         type: 'input',
         name: 'description',
         message: 'Write a brief desctription of your project',
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Is your application using a license?',
+        choices: ['Apache 2.0', 'Boost', 'BSD 3', 'BSD 2', 'GNU', 'MIT', 'Mozilla Public 2.0', 'Eclipse Public 2.0', 'No license', 'Other'],
     },
     {
         type: 'input',
@@ -46,9 +53,9 @@ const questions = [
 
 ];
 
-// TODO: Create a function to write README file
-const generateREADME =({title, description, installation, usage, contribution, testing, gitHub, email}) =>
-`## ${title}
+// Create a function to write README file
+const generateREADME =({title, description, installation, usage, license, contribution, testing, gitHub, email}) =>
+`# ${title}
 
 ## Description
 
@@ -58,7 +65,7 @@ ${description}
 
 1. [Installation](#installation)
 2. [Usage](#usage)
-3. [License](#)
+3. [License](#license)
 4. [Contributing](#contributing)
 5. [Tests](#tests)
 6. [Questions](#questions)
@@ -70,6 +77,10 @@ ${installation}
 ## Usage
 
 ${usage}
+
+## License
+
+${license}
 
 ## Contributing
     
@@ -83,18 +94,33 @@ ${testing}
 
 Have any questions?
 
-Reach out on GitHub: ${gitHub}
+Reach out on GitHub: https://github.com/${gitHub}
+
+or
 
 Email me: ${email} `;
 
+// Initialize questions through inquirer
 inquirer.prompt(questions)
 .then((answers) => {
+    // console.log(answers.license);
+    // if(answers.license === 'Apache 2.0') {
+    //    let renderLicense = 
+    // }
+    // Once the user has answered all questions, store input in the README format, and write a new md file with that content titled README.md
     const readMeContent = generateREADME(answers);
     
     fs.writeFile('README.md', readMeContent, (err) =>
     err ? console.log(err) : console.log('Created README.md')
     );
 });
+
+
+
+
+
+
+
 
 // // TODO: Create a function to initialize app
 // function init() {}
